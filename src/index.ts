@@ -1,30 +1,20 @@
 import Matter from 'matter-js';
 
-// module aliases
-const Engine = Matter.Engine,
-  Render = Matter.Render,
-  World = Matter.World,
-  Bodies = Matter.Bodies;
+const {Engine, Bodies, World, Render} = Matter;
 
-// create an engine
+// engine
 const engine = Engine.create();
+Engine.run(engine);
 
-// create a renderer
+// bodies and world
+const boxA = Bodies.rectangle(400, 200, 80, 80);
+const boxB = Bodies.rectangle(450, 50, 80, 80);
+const ground = Bodies.rectangle(400, 610, 810, 60, {isStatic: true});
+World.add(engine.world, [boxA, boxB, ground]);
+
+//render
 const render = Render.create({
   element: document.body,
   engine: engine,
 });
-
-// create two boxes and a ground
-const boxA = Bodies.rectangle(400, 200, 80, 80);
-const boxB = Bodies.rectangle(450, 50, 80, 80);
-const ground = Bodies.rectangle(400, 610, 810, 60, {isStatic: true});
-
-// add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, ground]);
-
-// run the engine
-Engine.run(engine);
-
-// run the renderer
 Render.run(render);

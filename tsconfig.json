@@ -7,7 +7,6 @@
     "lib": ["DOM"]
   },
   "include": [
-    "src/**/*.ts",
-    "test/**/*.ts"
+    "src/**/*.ts"
   ]
 }
